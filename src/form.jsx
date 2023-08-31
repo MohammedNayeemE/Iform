@@ -1,6 +1,7 @@
 import { Container, Form, Button, ProgressBar } from 'react-bootstrap';
-
+import axios from 'axios';
 import { useState } from 'react';
+import {useNavigate} from 'react';
 
 import './custom.css';
 
@@ -25,25 +26,34 @@ function MedicalForm() {
         id2:"healthgoals" , label2 : "HealthGoals" , type2:"text" , gif2:'target' , placeholder2:'eg. i want to be fit'
       }
     ]
-
+    const navigate = useNavigate();
     const [Now , setNow ] = useState(0);
     const [border , setBorder] = useState('none');
     const [currentStep , setCurrentStep] = useState(0);
     const [text , setText] = useState('');
     const [text1 , setText1] = useState('');
     const [text2 , setText2] = useState('');
-    const [data , setdata] = useState([]);
+    const [Data , setdata] = useState([]);
 
     const totalsteps = formComponents.length;
     
-    
+    const senddata = async(e , arr) =>{
+      try{
+      const response = await axios.post('http://localhost:5000/patient', arr);
+
+      console.log(response.data);
+
+      }
+      catch(err){
+        console.log(err);
+      }
+
+    }
 
     function handleInput(a , e){
         {(a<=100 && e.target.value != '') ? (setNow(Now+a)) : ((Now > 0 ? setNow(Now-a) : setNow(0)))}
         //setText(e.target.value);
-        
-
-    }
+        }
 
     function handlepreviousClick(e){
       e.preventDefault();
@@ -56,12 +66,16 @@ function MedicalForm() {
       setText1('');
       setText2('');
     
-    
+     
       
       //console.log(currentStep);
     }
     function handleNextStep(e){
+       if(e.target.textContent == 'submit'){
+        navigate('/success');
+       }
        e.preventDefault();
+
        if(text == '' || text1 == '' || text2 == ''){
         
         setBorder('2px solid red');
@@ -78,7 +92,7 @@ function MedicalForm() {
        // console.log(currentStep);
       }
       
-      const updateddata = [...data];
+      const updateddata = [...Data];
       updateddata[currentStep] = {
         text , text1 , text2
       }
@@ -160,7 +174,7 @@ function MedicalForm() {
   )
 }
 
-//<ProgressBar now={Now} variant='success' />
+
 export default MedicalForm;
 
 

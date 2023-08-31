@@ -12,7 +12,7 @@ function App(){
             <Routes>
                 <Route path="/" element={<Page/>}/>
                 <Route path='/patient' element={<MedicalForm/>}/>
-                <Route path='/doctor' element={<Backdrop/>}/>
+                <Route path='/success' element={<Backdrop/>}/>
 
                 
             </Routes>

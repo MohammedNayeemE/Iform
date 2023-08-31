@@ -14,28 +14,24 @@ connectToDb((err)=>{
 
 })
 
-app.post('/patient', (req , res)=>{
+app.post('/patient', async (req , res)=>{
     const post = req.body;
     let db = getdb();
 
-    db.collection('patient1').updateOne(
-        {UserName},
-        {
-            $set:{
-                post
-
-            }
+   const mergedDocument = await db.collection('patient1').findOneAndUpdate(
+    {_id:'merged'},
+    {
+        $addtoSet:{
+            post
         },
+    },
         {
-            upsert:true
+            upsert:true,
+            returnOriginal:false
         }
+    
+   )
 
-    )
-    .then(result =>{
-        res.send("Posted Succesfully");
-        console.log(result);
-    })
-    .catch(err =>{
-        res.status(500).json({err:"Some error occured"})
-    })
+   res.send('Sent Successfully');
+   console.log(mergedDocument);
 })

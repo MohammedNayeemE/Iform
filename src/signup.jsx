@@ -25,7 +25,7 @@ function SignUp() {
                             <FaUser style={{ marginRight: '0.5em' }} /> Patient
                             </Button>
                             <div style={{ marginTop: '10px' }}>
-                             <Button className='w-100 mb-2'variant='primary' onClick={()=> navigate('/doctor')}>
+                             <Button className='w-100 mb-2'variant='primary' onClick={()=> navigate('/success')}>
                                 <FaUserMd style={{ marginRight: '0.5em' }} /> Doctor
                             </Button>
                         </div>
