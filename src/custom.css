@@ -1,0 +1,30 @@
+
+
+.backdrop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom-modal{
+    box-shadow: -11px 9px 5px 0px rgba(99, 219, 252, 0.75);
+    -webkit-box-shadow: -11px 9px 5px 0px rgba(99, 219, 252, 0.75);
+    -moz-box-shadow: -11px 9px 5px 0px rgba(99, 219, 252, 0.75);
+}
+.gif-icon{
+    width: 50px;
+    margin-left: 5PX;
+}
+.inputtext:-moz-placeholder{
+    opacity: 0.2;
+}
+
+
+
+
+
